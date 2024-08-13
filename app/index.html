@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Mi primera app</title>
+</head>
+
+<body>
+    <!-- React Library & React DOM -->
+    <script src="https://unpkg.com/react@16.8.6/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js">
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
+    <div id="root"></div>
+    <script type="text/babel">
+        const ingredients = [
+            "1 cup unsalted butter",
+            "1 cup crunchy peanut butter",
+        ]
+
+        const ingredients_sandwich = [
+            "pan",
+            "jamon",
+            "queso"
+        ]
+
+        function IngredientsList(ingredients) {
+            let v = []
+            for (let i = 0; ingredients.length; i++) {
+                v.append(React.createElement("li", null, ingredients[i]));
+            }
+            return React.createElement(
+                "ul",
+                { className: "ingredients" },
+                ...v
+            );
+        }
+
+
+        const ing = IngredientsList(ingredients);
+        const ing2 = IngredientsList(ingredients_sandwich);
+
+        ReactDOM.render([ing, ing2], document.getElementById("root"));
+    </script>
+</body>
+
+</html>
