@@ -16,34 +16,34 @@
     </script>
     <div id="root"></div>
     <script type="text/babel">
-        const ingredients = [
-            "1 cup unsalted butter",
-            "1 cup crunchy peanut butter",
+        const table = React.createElement(
+            "table",
+            null,
+            React.createElement("tr", null,
+                React.createElement("td", null, "Nombre"),
+                React.createElement("td", null, "Apellido"),
+                React.createElement("td", null, "Edad"),
+            ),
+            React.createElement("tr", null,
+                React.createElement("td", null, "Catriel"),
+                React.createElement("td", null, "Tulian"),
+                React.createElement("td", null, "20"),
+            ),
+            React.createElement("tr", null,
+                React.createElement("td", null, "Valentin"),
+                React.createElement("td", null, "Cabrera"),
+                React.createElement("td", null, "22"),
+            )
+        )
+        
+        let contenidoTabla = [
+            ["Catriel", "Tulian", "20"],
+            ["Valentin", "Cabrera", "22"]
         ]
+        
+        function table() {
 
-        const ingredients_sandwich = [
-            "pan",
-            "jamon",
-            "queso"
-        ]
-
-        function IngredientsList(ingredients) {
-            let v = []
-            for (let i = 0; ingredients.length; i++) {
-                v.append(React.createElement("li", null, ingredients[i]));
-            }
-            return React.createElement(
-                "ul",
-                { className: "ingredients" },
-                ...v
-            );
         }
-
-
-        const ing = IngredientsList(ingredients);
-        const ing2 = IngredientsList(ingredients_sandwich);
-
-        ReactDOM.render([ing, ing2], document.getElementById("root"));
     </script>
 </body>
 
