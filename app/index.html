@@ -16,34 +16,31 @@
     </script>
     <div id="root"></div>
     <script type="text/babel">
-        const table = React.createElement(
-            "table",
-            null,
-            React.createElement("tr", null,
-                React.createElement("td", null, "Nombre"),
-                React.createElement("td", null, "Apellido"),
-                React.createElement("td", null, "Edad"),
-            ),
-            React.createElement("tr", null,
-                React.createElement("td", null, "Catriel"),
-                React.createElement("td", null, "Tulian"),
-                React.createElement("td", null, "20"),
-            ),
-            React.createElement("tr", null,
-                React.createElement("td", null, "Valentin"),
-                React.createElement("td", null, "Cabrera"),
-                React.createElement("td", null, "22"),
-            )
-        )
-        
         let contenidoTabla = [
             ["Catriel", "Tulian", "20"],
             ["Valentin", "Cabrera", "22"]
         ]
         
-        function table() {
-
+        let celular = {
+            "marca": "samsung",
+            "modelo": "galaxy j3",
+            "numero_serie": "3182903",
+            "imagen": "0x82193201293203940...",
+            "descripcion": "",
+            "precio": 350000
         }
+
+        function tabla(contenido) {
+            let aux = contenido.map(function(nombre) {return tabla2(nombre)} )
+            return (<table>{aux}</table>);
+        }
+
+        function tabla2(contenido) {
+            let aux1 = contenido.map(function (nombre) {return React.createElement("td", null, nombre)})
+            return React.createElement("tr", null, ...aux1)
+        }
+
+        const root = ReactDOM.render(tabla(contenidoTabla), document.getElementById("root"))
     </script>
 </body>
 
