@@ -1,26 +1,10 @@
 import Tarea from './Tarea';
 import PopUp from './PopUp';
 import { useState } from 'react';
+import ClaseTarea from './ClaseTarea';
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
-class ClaseTarea {
-    constructor(titulo, tiempo) {
-        this.titulo = capitalizeFirstLetter(titulo)
-        this.tiempo = tiempo
-    }
-}
-
-export default function ListadoTareas() {
-    const [tareas, cambiarTareas] = useState(
-        [
-            new ClaseTarea("limpiar la casa", "15:30"),
-            new ClaseTarea("llamar al sodero", "16:30")
-        ]
-    );
-    const [tipoPopUp, cambiarTipo] = useState(null);
+export default function ListadoTareas({ tareas, cambiarTareas, tipoPopUp, cambiarTipo }) {
     const numeroTareas = tareas.length
     function agregarTarea(tituloNuevaTarea, tiempoNuevaTarea) {
         const tarea = new ClaseTarea(tituloNuevaTarea, tiempoNuevaTarea)

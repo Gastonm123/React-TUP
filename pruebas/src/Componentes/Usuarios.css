@@ -8,8 +8,8 @@
 .usuarios-page .picture {
   width: 3em;
   height: 3em;
-  border-radius: 50%;
   margin-right: 2em;
+  float: left;
 }
 
 .user-brief table {

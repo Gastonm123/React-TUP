@@ -1,12 +1,25 @@
 import './App.css';
 import ListadoTareas from './Componentes/ListadoTareas';
 import Usuarios from './Componentes/Usuarios';
-import { useState } from 'react'
+import ClaseTarea from './Componentes/ClaseTarea'
+import { useState, useRef } from 'react'
 
 const paginas = ["tareas", "usuarios"]
 
 function App() {
   const [page, setPage] = useState(paginas[0])
+  // const [pagination, setPagination] = useState(0)
+  const [usersData, setUsersData] = useState([])
+  const [tareas, cambiarTareas] = useState(
+      [
+          new ClaseTarea("limpiar la casa", "15:30"),
+          new ClaseTarea("llamar al sodero", "16:30")
+      ]
+  );
+  const [tipoPopUp, cambiarTipo] = useState(null);
+
+  const seed = useRef(Date.now());
+
   return (
     <>
       <nav class="navbar navbar-expand bg-light">
@@ -25,11 +38,13 @@ function App() {
         </div>
       </nav>
       { page == "tareas"
-        ? <ListadoTareas />
+        ? <ListadoTareas tareas={tareas} cambiarTareas={cambiarTareas}
+                         tipoPopUp={tipoPopUp} cambiarTipo={cambiarTipo}/>
         : <></>
       }
       { page == "usuarios"
-        ? <Usuarios />
+        ? <Usuarios usuarios={usersData} cambiarUsuarios={setUsersData}
+                    seed={seed}/>
         : <></>
       }
     </>
