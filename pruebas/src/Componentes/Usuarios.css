@@ -1,0 +1,26 @@
+
+.usuarios-page .list-group-item {
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
+.usuarios-page .picture {
+  width: 3em;
+  height: 3em;
+  margin-right: 2em;
+  float: left;
+}
+
+.user-brief table {
+  column-gap: 3em;
+}
+
+.user-brief table td {
+  display: flex;
+  justify-content: space-between;
+}
+
+.usuarios-page td b {
+  margin-right: 5em;
+}

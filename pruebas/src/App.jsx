@@ -1,39 +1,51 @@
-import logo from './logo.svg';
 import './App.css';
 import ListadoTareas from './Componentes/ListadoTareas';
 import Usuarios from './Componentes/Usuarios';
-import { useState } from 'react'
+import ClaseTarea from './Componentes/ClaseTarea'
+import { useState, useRef } from 'react'
+
+const paginas = ["tareas", "usuarios"]
 
 function App() {
-  const [pestania, setPestania] = useState("tareas")
-  function manejarClickTareas() {
-    // pestania = "tareas"
-    setPestania("tareas")
-  }
-  function manejarClickUsuarios() {
-    // pestania = "usuarios"
-  }
+  const [page, setPage] = useState(paginas[0])
+  // const [pagination, setPagination] = useState(0)
+  const [usersData, setUsersData] = useState([])
+  const [tareas, cambiarTareas] = useState(
+      [
+          new ClaseTarea("limpiar la casa", "15:30"),
+          new ClaseTarea("llamar al sodero", "16:30")
+      ]
+  );
+  const [tipoPopUp, cambiarTipo] = useState(null);
+
+  const seed = useRef(Date.now());
+
   return (
     <>
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" 
-          onClick={manejarClickTareas}
-          href="#">Tareas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" 
-          onClick={manejarClickUsuarios}
-          href="#">Usuarios</a>
-        </li>
-      </ul>
-      { ---
-      ? <ListadoTareas />
-      : <></>
+      <nav class="navbar navbar-expand bg-light">
+        <div class="container" style={{alignItems: "center", justifyContent: "center"}}>
+          <div class="" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              { paginas.map(link => (
+                <a class={`nav-link ${link == page ? "active" : ""}`} 
+                onClick={()=>setPage(link)}
+                href="#" style={{textTransform: "capitalize"}}>
+                  {link}
+                </a>
+              )) }
+            </div>
+          </div>
+        </div>
+      </nav>
+      { page == "tareas"
+        ? <ListadoTareas tareas={tareas} cambiarTareas={cambiarTareas}
+                         tipoPopUp={tipoPopUp} cambiarTipo={cambiarTipo}/>
+        : <></>
       }
-      { ---
-      ? <Usuarios />
-      : <></>
+      { page == "usuarios"
+        ? <Usuarios usuarios={usersData} cambiarUsuarios={setUsersData}
+                    seed={seed}/>
+        : <></>
       }
     </>
   );
